@@ -27,7 +27,6 @@ public class MainAPI {
     public static  getService Service=null;
 
     public static getService get(Context context){
-        //Not working getting some error in connecting requestly in Okhttp
         collector = new RQCollector(context,"1",true);
         rqInterceptor = new RQInterceptor.Builder(context)
                 .collector(collector)
