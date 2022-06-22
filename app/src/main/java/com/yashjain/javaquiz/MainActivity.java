@@ -39,62 +39,51 @@ public class MainActivity extends AppCompatActivity {
         binding=ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         getData();
-        new Requestly.Builder(getApplication(), "oDaHcz6EYw9Ps6WQwjw3")
-                .build();
+
         showDialog();
-        binding.option1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
-                    binding.option2.setChecked(false);
-                    binding.option3.setChecked(false);
-                    binding.option4.setChecked(false);
-                    selectedOption="A";
-                }else{
-                    selectedOption="";
-                }
+
+
+        binding.option1.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b){
+                binding.option2.setChecked(false);
+                binding.option3.setChecked(false);
+                binding.option4.setChecked(false);
+                selectedOption="A";
+            }else{
+                selectedOption="";
             }
         });
 
-        binding.option2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
-                    binding.option1.setChecked(false);
-                    binding.option3.setChecked(false);
-                    binding.option4.setChecked(false);
-                    selectedOption="B";
-                }else{
-                    selectedOption="";
-                }
+        binding.option2.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b){
+                binding.option1.setChecked(false);
+                binding.option3.setChecked(false);
+                binding.option4.setChecked(false);
+                selectedOption="B";
+            }else{
+                selectedOption="";
             }
         });
 
-        binding.option3.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
-                    binding.option1.setChecked(false);
-                    binding.option2.setChecked(false);
-                    binding.option4.setChecked(false);
-                    selectedOption="C";
-                }else{
-                    selectedOption="";
-                }
+        binding.option3.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b){
+                binding.option1.setChecked(false);
+                binding.option2.setChecked(false);
+                binding.option4.setChecked(false);
+                selectedOption="C";
+            }else{
+                selectedOption="";
             }
         });
 
-        binding.option4.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b){
-                    binding.option1.setChecked(false);
-                    binding.option2.setChecked(false);
-                    binding.option3.setChecked(false);
-                    selectedOption="D";
-                }else{
-                    selectedOption="";
-                }
+        binding.option4.setOnCheckedChangeListener((compoundButton, b) -> {
+            if(b){
+                binding.option1.setChecked(false);
+                binding.option2.setChecked(false);
+                binding.option3.setChecked(false);
+                selectedOption="D";
+            }else{
+                selectedOption="";
             }
         });
 
@@ -115,17 +104,9 @@ public class MainActivity extends AppCompatActivity {
               }
         });
 
-        binding.resetBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                reset();
-            }
-        });
+        binding.resetBtn.setOnClickListener(view -> reset());
 
     }
-
-
-
 
     public void getData(){
         list= MainAPI.get(getApplicationContext()).getQuestionsList();
@@ -176,6 +157,7 @@ public class MainActivity extends AppCompatActivity {
             binding.nextBtn.setVisibility(View.INVISIBLE);
         }
     }
+
     private void uncheckAllOption(){
         binding.option1.setChecked(false);
         binding.option2.setChecked(false);
@@ -199,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         binding.resetBtn.setVisibility(View.GONE);
         index=0;
     }
+
     private void showDialog() {
         dialog=new ProgressDialog(MainActivity.this);
         dialog.setCancelable(false);//you cannot cancel it by pressing back button

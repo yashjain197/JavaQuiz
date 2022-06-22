@@ -11,6 +11,7 @@ import java.util.stream.Collector;
 import io.requestly.android.core.Requestly;
 import io.requestly.android.okhttp.api.RQCollector;
 import io.requestly.android.okhttp.api.RQInterceptor;
+import io.requestly.android.okhttp.api.RetentionManager;
 import kotlin.LateinitKt;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -27,18 +28,18 @@ public class MainAPI {
 
     public static getService get(Context context){
         //Not working getting some error in connecting requestly in Okhttp
-//        collector = new RQCollector(context, "1");
-//        rqInterceptor = new RQInterceptor.Builder(context)
-//                .collector(collector)
-//                .build();
-//
-//        client = new OkHttpClient.Builder()
-//                .addInterceptor(rqInterceptor)
-//                .build();
+        collector = new RQCollector(context,"1",true);
+        rqInterceptor = new RQInterceptor.Builder(context)
+                .collector(collector)
+                .build();
+
+        client = new OkHttpClient.Builder()
+                .addInterceptor(rqInterceptor)
+                .build();
         if(Service == null){
             Retrofit retrofit = new Retrofit.Builder()
                     .baseUrl(url)
-//                    .client(client)
+                    .client(client)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
